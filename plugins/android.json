@@ -1,0 +1,20 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "fi.oamk.mapApp"
+    },
+    "cordova-plugin-googlemaps": {
+      "API_KEY_FOR_ANDROID": "AIzaSyAmFdC8n2LoOi5HntYn1kIfUoA0OlnAGtA",
+      "PLAY_SERVICES_VERSION": "11.8.0",
+      "PACKAGE_NAME": "fi.oamk.mapApp"
+    }
+  },
+  "dependent_plugins": {}
+}

@@ -1,0 +1,4 @@
+#Sun Feb 11 18:52:21 EET 2018
+base.0=/home/kokonaut/code/mobileInternetProgramming/mapApp/platforms/android/app/build/intermediates/transforms/dex/release/0
+renamed.0=classes.dex
+file.0=/home/kokonaut/code/mobileInternetProgramming/mapApp/platforms/android/app/build/intermediates/transforms/dex/release/0/classes.dex
