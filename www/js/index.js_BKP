@@ -59,14 +59,6 @@ var app = {
 
                     if (results.length) {
 
-                        if (point1Lat == null) {
-                            point1Lat = JSON.stringify(results[0].position.lat);
-                            point1Lng = JSON.stringify(results[0].position.lng);
-                        }else {
-                            point2Lat = JSON.stringify(results[0].position.lat);
-                            point2Lng = JSON.stringify(results[0].position.lng);
-                        }
-
                         var msg = ["latitude:" + JSON.stringify(results[0].position.lat),
                             "longitude:" + JSON.stringify(results[0].position.lng)].join("\n");
 

@@ -17,6 +17,11 @@
  * under the License.
  */
 
+function deg2rad(deg) {
+    return deg * (Math.PI/180)
+}
+
+
 var app = {
     // Application Constructor
     initialize: function() {
@@ -35,6 +40,7 @@ var app = {
     prepareMap: function () {
         var div = document.getElementById("map_canvas1");
         var map = plugin.google.maps.Map.getMap(div);
+        var point1Lat, point1Lng, point2Lat, point2Lng;
         map.addEventListener(plugin.google.maps.event.MAP_READY, function() {
 
             var isRunning = false;
@@ -52,6 +58,14 @@ var app = {
                 }, function(results) {
 
                     if (results.length) {
+
+                        if (point1Lat == null) {
+                            point1Lat = JSON.stringify(results[0].position.lat);
+                            point1Lng = JSON.stringify(results[0].position.lng);
+                        }else {
+                            point2Lat = JSON.stringify(results[0].position.lat);
+                            point2Lng = JSON.stringify(results[0].position.lng);
+                        }
 
                         var msg = ["latitude:" + JSON.stringify(results[0].position.lat),
                             "longitude:" + JSON.stringify(results[0].position.lng)].join("\n");
@@ -104,17 +118,31 @@ var app = {
             alert(JSON.stringify(msg));
         };
 
+        var btn_distance = document.getElementById('btn_distance');
+        btn_distance.addEventListener("click", function(){
+            var R = 6371; // Radius of the earth in km
+            var dLat = deg2rad(point2Lat-point1Lat);  // deg2rad below
+            var dLon = deg2rad(point2Lng-point1Lng);
+            var a =
+                Math.sin(dLat/2) * Math.sin(dLat/2) +
+                Math.cos(deg2rad(point1Lat)) * Math.cos(deg2rad(point2Lat)) *
+                Math.sin(dLon/2) * Math.sin(dLon/2)
+            ;
+            var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+            var d = R * c; // Distance in km
+            alert("Distance between points is: " + d.toFixed(4) + " Km");
+        });
+
 
         var btn_myLoc = document.getElementById('btn_myLoc');
         btn_myLoc.addEventListener("click", function() {
-            map.clear();
             map.getMyLocation(onSuccess, onError);
         });
 
         var btn_clear = document.getElementById('btn_clear');
         btn_clear.addEventListener('click', function(){
             map.clear();
-            // point1Lat = null;
+            point1Lat = null;
         })
     }
 };
